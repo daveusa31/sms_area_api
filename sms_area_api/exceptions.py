@@ -1,13 +1,13 @@
 class NoKey(Exception):
-	"""
-	Не указан апи ключ
-	"""
+    """
+    Не указан апи ключ
+    """
     pass
 
 class BadKey(Exception):
-	"""
-	Неправильный апи ключ
-	"""
+    """
+    Неправильный апи ключ
+    """
     pass
 
 
@@ -19,26 +19,26 @@ class BadAction(Exception):
 
 
 class ErrorSql(Exception):
-	"""
-	Ошибка sql
-	"""
+    """
+    Ошибка sql
+    """
     pass
 
 class NoMeans(Exception):
-	"""
-	Недостаточно денег на балансе
-	"""
-	pass 
+    """
+    Недостаточно денег на балансе
+    """
+    pass 
 
 class NoNumber(Exception):
-	"""
-	Нет нужных номеров
-	"""
-	pass 
+    """
+    Нет нужных номеров
+    """
+    pass 
 
 class NoActivatorsRate(Exception):
-	"""
-	Ставка активаторов выше ваше
-	"""
-	pass
+    """
+    Ставка активаторов выше ваше
+    """
+    pass
 
