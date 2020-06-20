@@ -1,11 +1,20 @@
+import os
 import setuptools
 
 import sms_area_api
 
 packages = ["sms_area_api"] # Название плагина
 
-with open("requirements.txt", encoding="utf-8") as r:
-    requires = [i.strip() for i in r] # Зависимости
+try:
+    with open("requirements.txt", encoding="utf-8") as r:
+        requires = [i.strip() for i in r] # Зависимости
+
+except:
+    if os.path.exists("sms_area_api.egg-info/requires.txt"):
+        with open("sms_area_api.egg-info/requires.txt", encoding="utf-8") as r:
+            requires = [i.strip() for i in r] # Зависимости
+    else:
+        requires = []
 
 
 
