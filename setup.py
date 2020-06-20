@@ -13,6 +13,7 @@ setuptools.setup(
     name=sms_area_api.name,
     version=sms_area_api.__version__,
     author=sms_area_api.__author__,
+    author_email="strelok.127@yandex.ru",
     packages=packages,
     include_package_data=True,
     python_requires=">=3.5",
@@ -28,6 +29,5 @@ setuptools.setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
     ],
-    package_dir={"sms_area_api": "sms_area_api"},
     project_urls={"Source": sms_area_api.__source__},
 )

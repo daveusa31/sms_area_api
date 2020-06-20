@@ -10,6 +10,9 @@ class SmsArea:
     
     Доступные методы:
         get_balance
+        get_number
+        set_status
+        get_status
     """
     __API_URL = "http://sms-area.org/stubs/handler_api.php"
 
@@ -71,7 +74,7 @@ class SmsArea:
 
         return response
 
-    def set_status(self, order_id, status)
+    def set_status(self, order_id, status):
         params = {
             "action": "setStatus",
             "id": int(order_id),
