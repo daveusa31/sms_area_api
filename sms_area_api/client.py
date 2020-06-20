@@ -90,9 +90,6 @@ class SmsArea:
 
 
 
-
-
-
     def __request(self, params):
         params["api_key"] = self.__api_key
         response = requests.post(self.__API_URL, params).text
@@ -113,9 +110,4 @@ class SmsArea:
             raise exceptions.NoActivatorsRate(error_text)
 
 
-
         return response
-
-
-
-
