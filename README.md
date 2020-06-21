@@ -1,6 +1,34 @@
 # [SMS-AREA](https://sms-area.org)
-Официальная [документация](http://sms-area.org/api.txt)
+Официальная [документация](http://sms-area.org/api/ru/documentation.html)
 
+
+## Установка и использование:
+``sh 
+pip install sms-area-api
+``
+
+``python 
+import sms_area_api
+sms = sms_area_api.SmsArea(sms_ara_api_key)
+print("Доступные сервисы: {}".format(sms.aviable_services()))
+aviable_numbers = sms.aviable_numbers("tg", country="ru")
+if 0 < aviable_numbers:
+	print("Есть {} доступных номеров".format(aviable_numbers))
+	balance = sms.balance()
+	tg_price = sms.service_price("tg", "ru")
+	if balance >= tg_price:
+		print("Денег хватает")
+		activate = sms.get_number("tg", "ru")
+		print(activate)
+		input("Нажмите inter, когда отправите смс")
+		sms.set_activation_status(activate["id_activation"], 1)
+	else:
+		text = "У вас на балансе {} руб, а активация стоит {} руб"
+		text = text.format(balance, price)
+		print(text)
+else:
+	print("Нет доступных номеров")
+``
 
 
 # Таблица сервисов:
