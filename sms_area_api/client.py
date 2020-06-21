@@ -130,7 +130,7 @@ class SmsArea:
                 if in_country_max_numbers["amount"] < aviable_numbers:
                     in_country_max_numbers["name"] = country
         else:
-            in_country_max_numbers["name"] = service
+            in_country_max_numbers["name"] = pattern
 
         params = {
             "method": "runActivation",
@@ -145,7 +145,7 @@ class SmsArea:
         if "or" == country:
             aviable_numbers = 0
 
-            for country, services in response.items():
+            for _country, services in response.items():
                 price_and_aviable = services[service]
                 price = list(price_and_aviable)[0]
                 aviable_numbers += int(price_and_aviable[price])
@@ -165,7 +165,7 @@ class SmsArea:
 
         response = self.get_activation_summary()
         if "or" == country:
-            for country, services in response.items():
+            for _country, services in response.items():
                 for service in services:
                     aviable_services.append(service)
         else:
@@ -181,7 +181,7 @@ class SmsArea:
         if "or" == country:
             aviable_numbers = 0
 
-            for country, services in response.items():
+            for _country, services in response.items():
                 price_and_aviable = services[service]
                 now_price = float(list(price_and_aviable)[0])
                 if price < now_price:

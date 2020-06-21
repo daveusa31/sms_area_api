@@ -9,7 +9,8 @@ packages = ["sms_area_api"] # Название плагина
 
 
 if "requirements.txt" in os.listdir("."):
-    requires = [i.strip() for i in r] # Зависимости
+    with open("requirements.txt", encoding="utf-8") as r:
+        requires = [i.strip() for i in r] # Зависимости
 else:
     requires = []
 
