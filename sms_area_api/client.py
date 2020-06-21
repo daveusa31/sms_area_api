@@ -2,6 +2,7 @@ import requests
 
 from . import exceptions
 
+
 class SmsArea:
     """
     Официальная документация: http://sms-area.org/api/ru/documentation.html
@@ -12,6 +13,7 @@ class SmsArea:
         get_activation_list
         get_activation_status
     """
+
     __API_URL = "http://sms-area.org/api/handler.php"
 
     def __init__(self, api_key):
@@ -21,7 +23,6 @@ class SmsArea:
                 Ваш api ключ со страницы http://sms-area.org/settings.php
         """
         self.api_key = api_key
-
 
     def balance(self):
         """
@@ -36,7 +37,6 @@ class SmsArea:
         balance = self.__request(params)["balance"]
         return float(balance)
 
-
     def get_activation_list(self):
         """
         Метод предназначен для получения списка текущих 
@@ -50,14 +50,12 @@ class SmsArea:
         }
         return self.__request(params)
 
-
     def get_activation_status(self, id_activation: int):
         params = {
             "method": "getActivationStatus",
             "id_activation": int(id_activation),
         }
         return self.__request(params)
-
 
     def set_activation_status(self, id_activation: int, status: int):
         params = {
@@ -66,7 +64,6 @@ class SmsArea:
             "status": int(status),
         }
         return self.__request(params)
-
 
     def get_activation_summary(self):
         """
@@ -79,7 +76,6 @@ class SmsArea:
         }
         return self.__request(params)["summary"]
 
-
     def get_activation_rates(self):
         """
         Метод предназначен для получения размера ставок 
@@ -90,7 +86,6 @@ class SmsArea:
         }
         return self.__request(params)
 
-
     def set_activation_rates(self, rate_list: dict):
         params = {
             "method": "setActivationRates ",
@@ -98,8 +93,9 @@ class SmsArea:
         }
         return self.__request(params)
 
-
-    def load_activation_history(self, category: str, limit: int, id_last: int, pattern: str):
+    def load_activation_history(
+        self, category: str, limit: int, id_last: int, pattern: str
+    ):
         params = {
             "method": "loadActivationHistory",
             "category": int(pattern),
@@ -108,7 +104,6 @@ class SmsArea:
             "pattern": pattern,
         }
         return self.__request(params)
-
 
     def get_number(self, service, pattern="or"):
         """
@@ -127,7 +122,7 @@ class SmsArea:
 
         if "or" == pattern:
             response = self.get_activation_summary()
-            
+
             for country, services in response.items():
                 price_and_aviable = services[service]
                 price = list(price_and_aviable)[0]
@@ -137,14 +132,12 @@ class SmsArea:
         else:
             in_country_max_numbers["name"] = service
 
-
         params = {
             "method": "runActivation",
             "service": service,
             "pattern": in_country_max_numbers["name"],
         }
         return self.__request(params)
-
 
     def aviable_numbers(self, service: str, country="or"):
         response = self.get_activation_summary()
@@ -164,7 +157,6 @@ class SmsArea:
 
         return aviable_numbers
 
-
     def aviable_services(self, country="or"):
         """
         Список доступных сервисов
@@ -182,7 +174,6 @@ class SmsArea:
 
         return aviable_services
 
-
     def service_price(self, service: str, country="or"):
         price = 0
         response = self.get_activation_summary()
@@ -195,17 +186,12 @@ class SmsArea:
                 now_price = float(list(price_and_aviable)[0])
                 if price < now_price:
                     price = now_price
-                
+
         else:
             price_and_aviable = response[country][service]
             price = float(list(price_and_aviable)[0])
 
         return price
-
-
-
-
-
 
     def __request(self, params):
         params["key"] = self.api_key
@@ -213,7 +199,6 @@ class SmsArea:
 
         if 0 > int(response["response"]):
             raise exceptions.ApiError(response["description"])
-
 
         if 0 < len(response["data"]):
             response = response["data"]
