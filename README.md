@@ -25,7 +25,7 @@ if 0 < aviable_numbers:
 		activate = sms.get_number("tg", country="ru")
 		print(activate)
 		input("Нажмите inter, когда отправите смс")
-		sms.set_activation_status(activate["id_activation"], 1)
+		sms.get_activation_status(activate["id_activation"])
 		
 	else:
 		text = "У вас на балансе {} руб, а активация стоит {} руб"

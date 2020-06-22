@@ -195,7 +195,7 @@ class SmsArea:
 
     def __request(self, params):
         params["key"] = self.api_key
-        response = requests.post(self.__API_URL, params).json()
+        response = requests.post(self.__API_URL, params=params).json()
 
         if 0 > int(response["response"]):
             raise exceptions.ApiError(response["description"])
