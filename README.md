@@ -7,6 +7,7 @@
 pip install sms-area-api
 ```
 
+
 ```python 
 import sms_area_api
 sms = sms_area_api.SmsArea(sms_ara_api_key)
@@ -81,8 +82,3 @@ or | Любой
 
 
 # To do
-
-
-
-
-
