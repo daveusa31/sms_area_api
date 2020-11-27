@@ -16,24 +16,24 @@ print("Доступные сервисы: {}".format(sms.aviable_services()))
 
 aviable_numbers = sms.aviable_numbers("tg", country="ru")
 if 0 < aviable_numbers:
-	print("Есть {} доступных номеров".format(aviable_numbers))
+    print("Есть {} доступных номеров".format(aviable_numbers))
 
-	balance = sms.balance()
-	tg_price = sms.service_price("tg", country="ru")
+    balance = sms.balance()
+    tg_price = sms.service_price("tg", country="ru")
 
-	if balance >= tg_price:
-		print("Денег хватает")
-		activate = sms.get_number("tg", country="ru")
-		print(activate)
-		input("Нажмите inter, когда отправите смс")
-		sms.get_activation_status(activate["id_activation"])
-		
-	else:
-		text = "У вас на балансе {} руб, а активация стоит {} руб"
-		text = text.format(balance, price)
-		print(text)
+    if balance >= tg_price:
+        print("Денег хватает")
+        activate = sms.get_number("tg", country="ru")
+        print(activate)
+        input("Нажмите inter, когда отправите смс")
+        sms.get_activation_status(activate["id_activation"])
+        
+    else:
+        text = "У вас на балансе {} руб, а активация стоит {} руб"
+        text = text.format(balance, price)
+        print(text)
 else:
-	print("Нет доступных номеров")
+    print("Нет доступных номеров")
 ```
 
 
